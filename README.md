@@ -1,5 +1,5 @@
 # Ts
-ts类型体操
+ts 学习的资源
 
 [ts 中文网站](https://ts.yayujs.com/handbook/TheBasics.html)
 
