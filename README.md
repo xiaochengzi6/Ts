@@ -1,9 +1,10 @@
 # Ts
+
 ## ts 学习的资源：
 
 [ts 中文网站](https://ts.yayujs.com/handbook/TheBasics.html)
 
-[ts 类型体操](https://juejin.cn/book/7047524421182947366/section/7048281581428932619)
+[ts 类型体操-掘金小册](https://juejin.cn/book/7047524421182947366/section/7048281581428932619)
 
 [ts playground](https://www.typescriptlang.org/play?#code/C4TwDgpgBA4hwDUCGAbArhACgJwPYFsBLAZwgB5MA+KAXikyggA9gIA7AE2PryNLMJsAZhGxQAbqgzUA-BKnQAXFDYRxogFAbQkKMnTQ6cRApwES5M33IByAOZI0bOzcqUgA)
 
