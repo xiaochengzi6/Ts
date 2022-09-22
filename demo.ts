@@ -31,5 +31,18 @@ type deleteArrayElement<Arr extends unknown[], Target, Result extends unknown[] 
 type DeleteArray = deleteArrayElement<array, 5>
 
 // 构造长度不定的数组
-// type ChangeArray<Num extends number, El extends unknown[] = [], Arr extends unknown = []> =
-//   Arr['length'] extends Num ? El : ChangeArray<Num, [...El, ]>
+type ChangeArray<Num extends number, El = unknown, Arr extends unknown[] = []> = Arr['length'] extends Num
+  ? Arr
+  : ChangeArray<Num, El, [...Arr, El]>
+
+type changeArray = ChangeArray<10>
+
+type Camelcase<Str extends string> = Str extends `${infer Left}_${infer Right}${infer Rest}`
+  ? `${Left}${Uppercase<Right>}${Camelcase<Rest>}`
+  : Str
+
+// 处理数组中字符串将其遇到 '_' 后的字符大写
+type CamelcaseArr<Arr extends unknown[]> = Arr extends [infer First, ...infer Rest]
+  ? [Camelcase<First & string>, ...CamelcaseArr<Rest>]
+  : []
+type camelcaseArr = CamelcaseArr<['aaa_aaa', 'bb_bb_bb', 'cc_cc_cc']>
