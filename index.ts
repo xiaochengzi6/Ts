@@ -3,8 +3,6 @@
  * 索引可以做出变化，用 as 操作符，叫重映射
  */
 
-import { RestTypeNode } from './node_modules/typescript/lib/typescript'
-
 // ====模式匹配
 
 // ----数组
@@ -34,23 +32,25 @@ type StartWith<T extends string, Prefix extends string> = T extends `${Prefix}${
 type IsStartWith = StartWith<'value-number', 'value'>
 
 // 字符串替换
-type ReplaceStr<Str extends string, From extends string, To extends string> = Str extends `${infer Prefix}${From}${infer Last}`
-  ? `${Prefix}${To}${Last}`
-  : Str
+type ReplaceStr<
+  Str extends string,
+  From extends string,
+  To extends string
+> = Str extends `${infer Prefix}${From}${infer Last}` ? `${Prefix}${To}${Last}` : Str
 type rePlaceStr = ReplaceStr<'valuegetnumber', 'get', 'ww'>
 
 // 取消字符串尾部的空白字符串
 type TrimStrRight<Str extends string> = Str extends `${infer Rest}${' ' | '\n' | '\t'}` ? TrimStrRight<Rest> : Str
 // 这里值得注意的是使用了递归处理
-type trimStateRight = TrimStrRight<'dsdsds     '>
+type trimStateRight = TrimStrRight<`dsdsds     `>
 
 // 取消字符串前面的空白字符串
 type TrimStrLeft<Str extends string> = Str extends `${' ' | '\n' | '\t'}${infer Rest}` ? TrimStrLeft<Rest> : Str
-type trimStrLeft = TrimStrLeft<'    dsdsdsds'>
+type trimStrLeft = TrimStrLeft<`    dsdsdsds`>
 
 // 这两者何必 形成 trim() 用法
 type TrimStr<Str extends string> = TrimStrRight<TrimStrLeft<Str>>
-type trimStr = TrimStr<'    dsdsds    '>
+type trimStr = TrimStr<`    dsdsds    `>
 
 // ----函数
 
@@ -89,7 +89,9 @@ interface PersonConstructor {
 }
 
 // 提取构造函数的返回对象
-type GetInstanceType<Constructor extends new (...res: any) => any> = Constructor extends new (...res: any) => infer InstanceType
+type GetInstanceType<Constructor extends new (...res: any) => any> = Constructor extends new (
+  ...res: any
+) => infer InstanceType
   ? InstanceType
   : any
 type getInstanceType = GetInstanceType<PersonConstructor>
@@ -106,7 +108,11 @@ type getParametersConstructor = GetParameterConstructor<PersonConstructor>
 
 // 提取 props 中的 ref
 // 首先是通过 keyof Props 将其中索引提取出来构成联合类型 然后判断 ref 是否在其中
-type GetRefProps<Props> = 'ref' extends keyof Props ? (Props extends { ref?: infer Value | undefined } ? Value : never) : never
+type GetRefProps<Props> = 'ref' extends keyof Props
+  ? Props extends { ref?: infer Value | undefined }
+    ? Value
+    : never
+  : never
 type getRefProps = GetRefProps<{ ref?: 1; name: 'dong' }>
 
 /**
@@ -259,3 +265,66 @@ type RemoveItem<Arr extends unknown[], Item, Result extends unknown[]> = Arr ext
 type removeItem = RemoveItem<[1, 2, 2, 2, 2, 2, 3, 4, 5], 2, []>
 
 // 创建“不定”数组 当给定的数组类型元素不确定时候，就需要递归处理
+type BuildArray<Length extends number, Ele extends unknown, Arr extends unknown[] = []> = Arr['length'] extends Length
+  ? Arr
+  : BuildArray<Length, Ele, [...Arr, Ele]>
+type buildArray = BuildArray<5, 'number', []>
+
+// ----字符串类型的递归
+
+// 递归处理删除字符串中被匹配的值
+type ReplaceStrAll<
+  Str extends string,
+  From extends string,
+  To extends string
+> = Str extends `${infer Prefix}${From}${infer Suffix}` ? `${Prefix}${To}${ReplaceStrAll<Suffix, From, To>}` : Str
+type replaceStrAll = ReplaceStrAll<'AnnnBercerrWW', 'Ber', 'GGGG'>
+
+// 将字符串每一个字符设置为联合类型
+type StringToUnion<Str extends string> = Str extends `${infer First}${infer Value}`
+  ? First | StringToUnion<Value>
+  : never
+type stringToUnion = StringToUnion<'value'>
+
+// 字符串的反转
+type ReversStr<Str extends string, Result extends string = ''> = Str extends `${infer First}${infer Rest}`
+  ? ReversStr<Rest, `${First}${Result}`>
+  : Result
+type reversStr = ReversStr<'123456'>
+
+// ---- 对象类型的递归
+// 处理嵌套对象，从而其能够全部是 readonly 类型
+type DeepReadOnly<Obj extends Record<string, any>> = {
+  readonly [Key in keyof Obj]: Obj[Key] extends object
+    ? Obj[Key] extends Function
+      ? Obj[Key]
+      : DeepReadOnly<Obj[Key]>
+    : Obj[Key]
+}
+
+type deepReadOnly = DeepReadOnly<{ A: { C: { name: 1 } } }>
+
+/**
+ * 这里值得注意的是这个地方当 ts 用到时才会及打算所以这里并没有计算到此处
+ * 使用 Obj extends any ? never : 计算处理函数 || Objextends never ? never : 计算处理函数
+ */
+
+type DeepReadonly<Obj extends Record<string, any>> = Obj extends never
+  ? never
+  : {
+      readonly [Key in keyof Obj]: Obj[Key] extends object
+        ? Obj[Key] extends Function
+          ? Obj[Key]
+          : DeepReadonly<Obj[Key]>
+        : Obj[Key]
+    }
+//   : never
+
+type deepReadonly = DeepReadonly<{ A: { B: { C: { D: '3' } } } }>
+
+type ReverseStr<Str extends string> = Str extends `${infer First}${infer Rest}` ? `${ReverseStr<Rest>}${First}` : Str
+type ReverseStrResult = ReverseStr<'hello'>
+
+/**
+ * 数组长度做计数 ts 中没有办法去做加减运算符， 只能操作 数组中的长度 length 从而达到计算的目的
+ */
