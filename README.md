@@ -17,3 +17,6 @@
 [ts 体操笔记](https://github.com/xiaochengzi6/Ts/blob/main/Ts%E7%B1%BB%E5%9E%8B%E4%BD%93%E6%93%8D%E7%AC%94%E8%AE%B0.md)
 
 [ts 中文网站的学习笔记](https://github.com/xiaochengzi6/Ts/blob/main/TypeScript%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+
+## 阅读代码
+[阅读全部代码](https://github.com/xiaochengzi6/Ts/blob/main/index.ts)
