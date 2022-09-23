@@ -79,7 +79,7 @@
     // "strict": true,                                      /* Enable all strict type-checking options. */
     "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
     "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
-    // "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
+    // "strictFunctionTypes": true,                      /* true: 函数仅开启参数的逆变检查 false: 函数将支持双向协变 */
     "strictBindCallApply": true,                      /* 在对象或者是类中检查 bind call apply 时 绑定 this 是否正确 */
     // "strictPropertyInitialization": true,             /* Check for class properties that are declared but not set in the constructor. */
     // "noImplicitThis": true,                           /* Enable error reporting when 'this' is given the type 'any'. */
