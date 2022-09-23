@@ -20,3 +20,5 @@
 
 ## 阅读代码
 [阅读全部代码](https://github.com/xiaochengzi6/Ts/blob/main/index.ts)
+
+[ts 题及答案 ](https://github.com/xiaochengzi6/Ts/blob/main/demo.ts)
