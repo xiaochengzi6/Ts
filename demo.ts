@@ -3,34 +3,26 @@
 
 type array = [1, 2, 3, 4, 5, 6]
 // 检索 数组
-type IsSameValue<A, B> = (A extends B ? true : false) &
-  (B extends A ? true : false)
+type IsSameValue<A, B> = (A extends B ? true : false) & (B extends A ? true : false)
 
-type IncludeArray<Arr extends unknown[], Target> = Arr extends [
-  infer First,
-  ...infer Rest
-]
+type IncludeArray<Arr extends unknown[], Target> = Arr extends [infer First, ...infer Rest]
   ? IsSameValue<First, Target> extends true
     ? true
     : IncludeArray<Rest, Target>
   : false
 
 // 返回查到的数据
-type SerchArray<Arr extends unknown[], Target> = Arr extends [
-  infer First,
-  ...infer Rest
-]
+type SerchArray<Arr extends unknown[], Target> = Arr extends [infer First, ...infer Rest]
   ? IsSameValue<First, Target> extends true
     ? First
     : SerchArray<Rest, Target>
   : never
 
 // 删除匹配到的数组元素
-type deleteArrayElement<
-  Arr extends unknown[],
-  Target,
-  Result extends unknown[] = []
-> = Arr extends [infer First, ...infer Rest]
+type deleteArrayElement<Arr extends unknown[], Target, Result extends unknown[] = []> = Arr extends [
+  infer First,
+  ...infer Rest
+]
   ? IsSameValue<First, Target> extends true
     ? deleteArrayElement<Rest, Target, Result>
     : deleteArrayElement<Rest, Target, [...Result, First]>
@@ -39,24 +31,18 @@ type deleteArrayElement<
 type DeleteArray = deleteArrayElement<array, 5>
 
 // 构造长度不定的数组
-type ChangeArray<
-  Num extends number,
-  El = unknown,
-  Arr extends unknown[] = []
-> = Arr['length'] extends Num ? Arr : ChangeArray<Num, El, [...Arr, El]>
+type ChangeArray<Num extends number, El = unknown, Arr extends unknown[] = []> = Arr['length'] extends Num
+  ? Arr
+  : ChangeArray<Num, El, [...Arr, El]>
 
 type changeArray = ChangeArray<10>
 
-type Camelcase<Str extends string> =
-  Str extends `${infer Left}_${infer Right}${infer Rest}`
-    ? `${Left}${Uppercase<Right>}${Camelcase<Rest>}`
-    : Str
+type Camelcase<Str extends string> = Str extends `${infer Left}_${infer Right}${infer Rest}`
+  ? `${Left}${Uppercase<Right>}${Camelcase<Rest>}`
+  : Str
 
 // 处理数组中字符串将其遇到 '_' 后的字符大写
-type CamelcaseArr<Arr extends unknown[]> = Arr extends [
-  infer First,
-  ...infer Rest
-]
+type CamelcaseArr<Arr extends unknown[]> = Arr extends [infer First, ...infer Rest]
   ? [Camelcase<First & string>, ...CamelcaseArr<Rest>]
   : []
 type camelcaseArr = CamelcaseArr<['aaa_aaa', 'bb_bb_bb', 'cc_cc_cc']>
@@ -139,13 +125,45 @@ printHobbies = printName
 // 虽然 这里 printName 使用到了父类型 但是也符合子类型的约束
 // 所以这里并没问题
 
-/**
- * 如何理解这句话 函数的参数具有逆变性质，而返回值是协变的
- */
-
 // 当父类型可以赋值给子类型时产生了逆变，子类型赋值给父类型时产生了协变
 // 两者都能发生，就叫做双向协变
 printName = printHobbies
 
 // 双向协变 存在于 ts 2x 版本中需要通过 strictFunctionTypes 来去管理
 // ture 支持函数参数的逆变，设置为 fasle 则是双向协变
+
+// 问题：将接口的首字母大写
+interface obj {
+  name_object: string
+  age_Perter: number
+}
+
+type InterfaceStringUpperCase<Obj extends object> = {
+  [Key in keyof Obj as Key extends `${infer First}${infer Rest}` ? `${Uppercase<First>}${Rest}` : Key]: Obj[Key]
+}
+
+type interFaceStringUpperCase = InterfaceStringUpperCase<obj>
+
+// 问题： 将 "a=1&b=2&c=3" ===> {a: 1, b: 2, c: 3}
+type ParseParam<A extends string> = A extends `${infer Key}=${infer Value}` ? { [K in Key]: Value } : {}
+
+// 这一步需要理解
+type MergeParams<A extends Record<string, any>, B extends Record<string, any>> = {
+  // A 有 key 有 那么 B 呢 ？ 合并 ： 返回A的值
+  // A 没有 key 但 B 有 返回 B 的值，没有返回 never
+  [Key in keyof A | keyof B]: Key extends keyof A
+    ? Key extends keyof B
+      ? MergeValues<A[Key], B[Key]>
+      : A[Key]
+    : Key extends keyof B
+    ? B[Key]
+    : never
+}
+
+type ParseQueryString<Str extends string> = Str extends `${infer A}&${infer B}`
+  ? MergeParams<ParseParam<A>, ParseQueryString<B>>
+  : ParseParam<Str>
+
+type MergeValues<A, B> = A extends B ? A : B extends unknown[] ? [A, ...B] : [A, B]
+
+type valueParseQueryString = ParseQueryString<'a=1&b=2&c=3'>
