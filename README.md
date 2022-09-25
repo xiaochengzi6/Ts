@@ -11,7 +11,7 @@
 
 [4、数组、联合、元组](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80/%E6%95%B0%E7%BB%84%E3%80%81%E5%85%83%E7%BB%84%E3%80%81%E8%81%94%E5%90%88.md)
 
-[类](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80/%E7%B1%BB.md)
+[5、类](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80/%E7%B1%BB.md)
 
 ## Ts 中的类型操作
 
