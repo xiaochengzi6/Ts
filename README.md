@@ -1,7 +1,7 @@
 ## 阅读须知
 [**关于此项目阅读须知及前置知识**](https://github.com/xiaochengzi6/Ts/blob/main/index.ts)
 
-[ts playground 在线demo ](https://www.typescriptlang.org/play?#code/C4TwDgpgBA4hwDUCGAbArhACgJwPYFsBLAZwgB5MA+KAXikyggA9gIA7AE2PryNLMJsAZhGxQAbqgzUA-BKnQAXFDYRxogFAbQkKMnTQ6cRApwES5M33IByAOZI0bOzcqUgA)
+[ts playground 在线demo ](https://www.typescriptlang.org/play?#code/Q)
 
 [1、ts 基本类型](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80/%E7%B1%BB%E5%9E%8B.md)
 
