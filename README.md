@@ -1,4 +1,4 @@
-** 阅读须知 **
+**阅读须知 **
 [**关于此项目阅读须知及前置知识**](https://github.com/xiaochengzi6/Ts/blob/main/index.ts)
 
 ## 入门教程
