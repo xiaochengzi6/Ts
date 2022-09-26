@@ -1,6 +1,7 @@
-## 阅读须知
+** 阅读须知 **
 [**关于此项目阅读须知及前置知识**](https://github.com/xiaochengzi6/Ts/blob/main/index.ts)
 
+## 入门教程
 [ts playground 在线demo ](https://www.typescriptlang.org/play?#code/Q)
 
 [1、ts 基本类型](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80/%E7%B1%BB%E5%9E%8B.md)
@@ -13,7 +14,7 @@
 
 [5、类](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0/%E5%9F%BA%E7%A1%80/%E7%B1%BB.md)
 
-## Ts 中的类型操作
+## 进阶 Ts 中的类型操作
 
 [**1. 模式匹配-提取**](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0/ts%20-%20%E5%85%AD%E5%A4%A7%E5%A5%97%E8%B7%AF/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D-%E6%8F%90%E5%8F%96.ts)
 
