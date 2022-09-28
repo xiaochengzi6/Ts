@@ -94,3 +94,12 @@ type unionIntersectResult = UnionIntersectResult<{ a: number } | { b: string }>
 
 // 这个 UnionIntersectResult 就充分解释了上面说的话 返回的类型是其协变后的东西
 // 联合类型协变后就变成 联合类型的交集
+
+// 这里有一个问题 一直处理不了 
+type t<A, B> = A extends A ? A : B  
+
+function test<A extends Record<string, any>, B extends Record<string, any>>(x: A, y: B): t<A, B>{
+    var a = {...x, ...y}
+    return a 
+}
+
