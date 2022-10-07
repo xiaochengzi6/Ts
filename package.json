@@ -8,6 +8,7 @@
     "typescript": "^4.7.2"
   },
   "scripts": {
-    "tsc": "tsc --noEmitOnError index.ts"
+    "start": "tsc --noEmitOnError index.ts",
+    "dev": "tsc  --build"
   }
 }

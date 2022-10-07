@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    // 核心位置使用这个配置可以做一些预先配置
+    "composite": true,
+    "lib": ["ES2015", "DOM"],
+    "types": [],
+    "outDir": "../dist/aaa"
+  },
+  "include": [
+    "*.ts"
+  ]
+}
