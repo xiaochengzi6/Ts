@@ -289,10 +289,4 @@ namespace Validate {
 
 
 ## 参考文章
-[1](https://juejin.cn/post/6987735091925483551#heading-4)
-
-[2]()
-
-[3]()
-
-[4]()
+[掘金 - ts](https://juejin.cn/post/6987735091925483551#heading-4)
