@@ -44,3 +44,6 @@ type MergeValues<A, B> =
 
 // 最后
 type com = ArrayToObj<parse>
+
+
+// 这里其实做复杂了直接将 "a=1&b=2&c=3" 转换成 {a: 1} {b: 2} {c: 3} 的对象 然后再组装起来
