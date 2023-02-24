@@ -38,7 +38,7 @@
 
 [Ts 文件的操作及易混淆知识点](https://github.com/xiaochengzi6/Ts/blob/main/Ts%E6%96%87%E4%BB%B6%E7%9A%84%E6%98%93%E6%B7%B7%E7%9F%A5%E8%AF%86%E7%82%B9.md)
 ## Ts 实战
-[1. 题目：将'a=1&b=2&c=3' => {a: 1, b: 2, c: 3}]()
+[1. 题目：将'a=1&b=2&c=3' => {a: 1, b: 2, c: 3}](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E5%AE%9E%E6%88%98/ParaseQueryString.ts)
 
 [2. xxx]()
 ## Ts 学习的资源：
