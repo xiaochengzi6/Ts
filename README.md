@@ -36,7 +36,7 @@
 
 [Ts 问题及解析](https://github.com/xiaochengzi6/Ts/blob/main/ts%E6%BA%90%E7%A0%81/ts%20%E9%97%AE%E9%A2%98-%E7%AD%94%E6%A1%88/ts%20%E9%97%AE%E9%A2%98.ts)
 
-[Ts 文件的操作及易混淆知识点]()
+[Ts 文件的操作及易混淆知识点](https://github.com/xiaochengzi6/Ts/blob/main/Ts%E6%96%87%E4%BB%B6%E7%9A%84%E6%98%93%E6%B7%B7%E7%9F%A5%E8%AF%86%E7%82%B9.md)
 ## Ts 实战
 [1. 题目：将'a=1&b=2&c=3' => {a: 1, b: 2, c: 3}]()
 
