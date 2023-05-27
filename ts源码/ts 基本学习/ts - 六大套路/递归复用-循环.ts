@@ -49,6 +49,14 @@ type Includes<Arr extends unknown[], FindItem> = Arr extends [
 type IncludesResult = Includes<[1, 2, 3, 4, 5], 4>
 type IncludesResult2 = Includes<[1, 2, 3, 4, 5], 6>
 
+// 使用联合类型也可以实现查找
+type Incldes<Arr extends unknown[], FindItem> = 
+  FindItem extends Arr[number] 
+   ? true 
+   : false 
+
+type includes = Incldes<[1,2,3,4,5], 6>
+
 // 在数组中删除与之匹配的元素
 type RemoveItem<
   Arr extends unknown[],
