@@ -90,6 +90,7 @@ type UnionIntersectResult<U> = (
 ) extends (x: infer R) => unknown
   ? R
   : never
+// 传入联合类型返回的却是交叉类型
 type unionIntersectResult = UnionIntersectResult<{ a: number } | { b: string }>
 
 // 这个 UnionIntersectResult 就充分解释了上面说的话 返回的类型是其协变后的东西
